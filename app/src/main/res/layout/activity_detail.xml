@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinatorLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:background="@drawable/ic_wintery_sunburst">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:contentScrim="@color/colorPrimaryDark"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            app:toolbarId="@id/toolbar">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                android:layout_gravity="bottom"
+                app:popupTheme="@style/AppTheme.PopupOverlay">
+
+                <ImageView
+                    android:id="@+id/ivHomeBadgeToolbar"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:fitsSystemWindows="true"
+                    android:scaleType="fitStart"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/ic_toolbar_background" />
+
+                <TextView
+                    android:id="@+id/tvScoreToolbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    tools:text="00"/>
+
+                <ImageView
+                    android:id="@+id/ivAwayBadgeToolbar"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_toolbar_background" />
+
+                <TextView
+                    android:id="@+id/tvMatchDateToolbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    tools:text="00"/>
+
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <TextView
+        android:id="@+id/tvMatchDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:textColor="#000"
+        android:textSize="14dp"
+        app:layout_anchor="@id/appBar"
+        app:layout_anchorGravity="center_horizontal"
+        app:layout_behavior="com.otto.paulus.footballmatchscheduletest.layout.behavior.ScoreBehavior"
+        tools:text="Saturday, 27 October 2018" />
+
+    <!-- start Home team widget -->
+    <TextView
+        android:id="@+id/tvHomeTeamName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        app:layout_anchor="@id/toolbar"
+        app:layout_anchorGravity="top"
+        android:layout_gravity="top"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        tools:text="home team name"/>
+
+    <ImageView
+        android:id="@+id/ivHomeBadge"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_anchor="@id/tvHomeTeamName"
+        app:layout_anchorGravity="top|center_horizontal"
+        android:layout_gravity="top|center_horizontal"
+        android:fitsSystemWindows="true"
+        android:scaleType="fitStart"
+        android:src="@drawable/ic_toolbar_background"
+        app:layout_behavior="com.otto.paulus.footballmatchscheduletest.layout.behavior.HomeTeamBadgeBehavior" />
+
+    <!-- end Home team widget -->
+
+    <TextView
+        android:id="@+id/tvScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:textSize="36dp"
+        app:layout_anchor="@id/appBar"
+        app:layout_anchorGravity="center"
+        app:layout_behavior="com.otto.paulus.footballmatchscheduletest.layout.behavior.ScoreBehavior"
+        tools:text="00 - 00" />
+
+    <!-- start Away team widget -->
+    <TextView
+        android:id="@+id/tvAwayTeamName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        app:layout_anchor="@id/toolbar"
+        app:layout_anchorGravity="top|right"
+        android:layout_gravity="top"
+        android:textSize="20dp"
+        android:textColor="#000"
+        android:textStyle="bold"
+        tools:text="away team name"/>
+
+    <ImageView
+        android:id="@+id/ivAwayBadge"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_anchor="@id/tvAwayTeamName"
+        app:layout_anchorGravity="top|center_horizontal"
+        android:layout_gravity="top|center_horizontal"
+        android:fitsSystemWindows="true"
+        android:scaleType="fitEnd"
+        android:src="@drawable/ic_toolbar_background"
+        app:layout_behavior="com.otto.paulus.footballmatchscheduletest.layout.behavior.AwayTeamBadgeBehavior"/>
+
+    <!-- end Away team widget -->
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"/>
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- formations -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/tvHomeFormation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="5dp"
+                        android:textAlignment="center"
+                        android:layout_weight="1"
+                        tools:text="@string/lorem1"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:id="@+id/tvAwayFormation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="5dp"
+                        android:textAlignment="center"
+                        android:layout_weight="1"
+                        tools:text="@string/lorem1"/>
+                </LinearLayout>
+
+                <!-- goals -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/tvHomeGoals"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="10dp"
+                        android:lineSpacingExtra="5dp"
+                        android:layout_weight="1"
+                        tools:text="@string/lorem1"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="@string/label_goals"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:id="@+id/tvAwayGoals"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:textSize="10dp"
+                        android:lineSpacingExtra="5dp"
+                        android:layout_weight="1"
+                        tools:text="@string/lorem1"/>
+                </LinearLayout>
+
+                <!-- shots -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/tvHomeShots"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        tools:text="@string/lorem1"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="@string/label_shots"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:id="@+id/tvAwayShots"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:layout_weight="1"
+                        tools:text="@string/lorem1"/>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:paddingVertical="5dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:textColor="#fff"
+                    android:textAlignment="center"
+                    android:text="@string/label_lineups"/>
+
+                <!-- goalkeeper -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/tvHomeGoalKeeper"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="10dp"
+                        android:layout_weight="1"
+                        tools:text="@string/lorem1"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="@string/label_goalkeeper"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:id="@+id/tvAwayGoalKeeper"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="10dp"
+                        android:gravity="right"
+                        android:layout_weight="1"
+                        tools:text="@string/lorem1"/>
+                </LinearLayout>
+
+                <!-- defenders -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/tvHomeDefenders"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="10dp"
+                        android:lineSpacingExtra="5dp"
+                        android:layout_weight="1"
+                        tools:text="@string/lorem1"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="@string/label_defenders"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:id="@+id/tvAwayDefenders"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:textSize="10dp"
+                        android:lineSpacingExtra="5dp"
+                        android:layout_weight="1"
+                        tools:text="@string/lorem1"/>
+                </LinearLayout>
+
+                <!-- midfielders -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/tvHomeMidfielders"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="10dp"
+                        android:lineSpacingExtra="5dp"
+                        android:layout_weight="1"
+                        tools:text="@string/lorem1"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="@string/label_midfielders"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:id="@+id/tvAwayMidfielders"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:textSize="10dp"
+                        android:lineSpacingExtra="5dp"
+                        android:layout_weight="1"
+                        tools:text="@string/lorem1"/>
+                </LinearLayout>
+
+                <!-- forwards -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/tvHomeForwards"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="10dp"
+                        android:lineSpacingExtra="5dp"
+                        android:layout_weight="1"
+                        tools:text="@string/lorem1"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="@string/label_forwards"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:id="@+id/tvAwayForwards"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:textSize="10dp"
+                        android:lineSpacingExtra="5dp"
+                        android:layout_weight="1"
+                        tools:text="@string/lorem1"/>
+                </LinearLayout>
+
+                <!-- substitutes -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/tvHomeSubstitutes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="10dp"
+                        android:lineSpacingExtra="5dp"
+                        android:layout_weight="1"
+                        tools:text="@string/lorem1"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="@string/label_substitutes"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:id="@+id/tvAwaySubstitutes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:textSize="10dp"
+                        android:lineSpacingExtra="5dp"
+                        android:layout_weight="1"
+                        tools:text="@string/lorem1"/>
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </android.support.v4.widget.NestedScrollView>
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>
