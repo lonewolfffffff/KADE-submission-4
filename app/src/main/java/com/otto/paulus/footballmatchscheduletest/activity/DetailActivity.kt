@@ -137,12 +137,14 @@ class DetailActivity: AppCompatActivity(), MatchDetailView, AppBarLayout.OnOffse
         tvHomeTeamName.text = match.homeTeam
 
         if (match.homeScore === null) {
-            tvScore.text = "vs"
-            tvScoreToolbar.text = " vs "
+            val score_separator = getString(R.string.upcoming_match_score_separator)
+            tvScore.text = score_separator
+            tvScoreToolbar.text = " $score_separator "
         }
         else {
-            tvScore.text = match.homeScore + " - " + match.awayScore
-            tvScoreToolbar.text = match.homeScore + " - " + match.awayScore
+            val score_separator = getString(R.string.match_score_separator)
+            tvScore.text = match.homeScore + " $score_separator " + match.awayScore
+            tvScoreToolbar.text = match.homeScore + " $score_separator " + match.awayScore
         }
 
         tvAwayTeamName.text = match.awayTeam

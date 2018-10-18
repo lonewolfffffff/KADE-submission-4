@@ -2,6 +2,7 @@
     <string name="app_name">Football Match Schedule</string>
 
     <string name="match_score_separator">-</string>
+    <string name="upcoming_match_score_separator">vs</string>
 
     <string name="menu_prev_match">Prev Match</string>
     <string name="menu_next_match">Next Match</string>
@@ -22,6 +23,8 @@
 
     <string name="label_added_to_favorite">Added to favorite</string>
     <string name="label_removed_from_favorite">Removed from favorite</string>
+
+    <string name="database_name">Football.db</string>
 
     <string name="lorem1">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed felis velit, elementum at finibus eu, venenatis et augue. Mauris posuere a magna a scelerisque. Aliquam hendrerit egestas mi, sed imperdiet eros efficitur quis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus sem velit, lacinia tempus viverra at, dignissim eget mi. Duis enim magna, finibus quis justo quis, laoreet lacinia velit. Nunc arcu erat, scelerisque vel risus rutrum, varius pellentesque dui.

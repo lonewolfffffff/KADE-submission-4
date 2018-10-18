@@ -2,9 +2,10 @@ package com.otto.paulus.footballmatchscheduletest.db
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
+import com.otto.paulus.footballmatchscheduletest.R
 import org.jetbrains.anko.db.*
 
-class DatabaseHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "Football.db", null, 1) {
+class DatabaseHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, ctx.getString(R.string.database_name), null, 1) {
     companion object {
         private var instance: DatabaseHelper? = null
 
