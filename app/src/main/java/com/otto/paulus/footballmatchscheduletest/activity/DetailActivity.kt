@@ -68,10 +68,12 @@ class DetailActivity: AppCompatActivity(), MatchDetailView, AppBarLayout.OnOffse
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         return when (item?.itemId) {
             R.id.add_to_favorite -> {
-                if (isFavorite) removeFromFavorite() else addToFavorite()
+                if(this::match.isInitialized) {
+                    if (isFavorite) removeFromFavorite() else addToFavorite()
 
-                isFavorite = !isFavorite
-                setFavorite()
+                    isFavorite = !isFavorite
+                    setFavorite()
+                }
 
                 true
             }

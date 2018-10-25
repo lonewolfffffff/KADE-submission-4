@@ -36,7 +36,7 @@ object TheSportDBApi:AnkoLogger {
                 .appendPath("json")
                 .appendPath(BuildConfig.TSDB_API_KEY)
                 .appendPath("lookupevent.php")
-                .appendQueryParameter("id", eventId.toString())
+                .appendQueryParameter("id", eventId)
                 .build()
                 .toString()
     }
@@ -48,7 +48,7 @@ object TheSportDBApi:AnkoLogger {
                 .appendPath("json")
                 .appendPath(BuildConfig.TSDB_API_KEY)
                 .appendPath("lookupteam.php")
-                .appendQueryParameter("id", teamId.toString())
+                .appendQueryParameter("id", teamId)
                 .build()
                 .toString()
     }

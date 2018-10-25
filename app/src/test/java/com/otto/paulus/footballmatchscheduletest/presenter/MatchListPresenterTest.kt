@@ -48,7 +48,7 @@ class MatchListPresenterTest {
     fun getLast15EventsList() {
 
         val leagueId = 4328
-        val events:MutableList<Event> = mutableListOf()
+        val events:MutableList<Event> = mutableListOf(Event("1","27/08/2018","Liverpool","1","5","Chelsea","2","0"))
         val response = EventResponse(events)
 
         `when`(gson.fromJson(apiRepository
@@ -68,7 +68,7 @@ class MatchListPresenterTest {
     @Test
     fun getNext15EventsList() {
         val leagueId = 4328
-        val events:MutableList<Event> = mutableListOf()
+        val events:MutableList<Event> = mutableListOf(Event("1","27/10/2018","Liverpool","1","null","Chelsea","2","null"))
         val response = EventResponse(events)
 
         `when`(gson.fromJson(apiRepository
